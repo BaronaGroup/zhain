@@ -76,7 +76,15 @@ function initZhain() {
         var args = splitArgs(arguments)
         try {
           var result = fn.apply(this, args.args)
-          result !== undefined ? args.done(null, result) : args.done(null)
+          if (result !== undefined) {
+            if (result.then && result.fail) {
+              result.then(done).done()
+            } else {
+              args.done(null, result)
+            }
+          } else {
+            args.done(null)
+          }
         } catch (e) {
           args.done(e)
         }
