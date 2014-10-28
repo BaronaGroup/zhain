@@ -38,7 +38,7 @@ function initZhain() {
 
     Zhain.prototype.run = function(callback) {
       var ctx = Object.create(Zhain.prototype)
-      this.invoke(ctx, callback)
+      return this.invoke(ctx, callback)
     }
 
     Zhain.prototype.invoke = function(ctx, callback) {
