@@ -107,10 +107,10 @@ function initZhain() {
 
   })()
 
+  zhain.Zhain = Zhain
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = zhain
   } else {
-    zhain.Zhain = Zhain
     return zhain
   }
 }
