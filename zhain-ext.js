@@ -65,10 +65,10 @@ function zhainExt(zhain, chai, $) {
         zhain.ext.assert.equal($($locator.selector).val(), val)
       },
       assertDisabled: function($locator) {
-        zhain.ext.assert.isTrue($($locator.selector).is(':disabled'), '$("' + $locator.selector + '") is not disabled')
+        zhain.ext.assert.isTrue($($locator.selector).is(':disabled'), '$("' + $locator.selector + '") should be disabled')
       },
       assertEnabled: function($locator) {
-        zhain.ext.assert.isFalse($($locator.selector).is(':disabled'), '$("' + $locator.selector + '") is disabled')
+        zhain.ext.assert.isFalse($($locator.selector).is(':disabled'), '$("' + $locator.selector + '") should be enabled')
       },
       assertText: function($locator, txt) {
         zhain.ext.assert.equal($($locator.selector).text(), txt)
@@ -77,37 +77,37 @@ function zhainExt(zhain, chai, $) {
         zhain.ext.assert.equal($($locator.selector).html(), html)
       },
       assertVisible: function($locator) {
-        zhain.ext.assert.isTrue($($locator.selector).is(':visible'), '$("' + $locator.selector + '") is not visible')
+        zhain.ext.assert.isTrue($($locator.selector).is(':visible'), '$("' + $locator.selector + '") should be visible')
       },
       assertNotVisible: function($locator) {
-        zhain.ext.assert.isFalse($($locator.selector).is(':visible'), '$("' + $locator.selector + '") is visible')
+        zhain.ext.assert.isFalse($($locator.selector).is(':visible'), '$("' + $locator.selector + '") should not be visible')
       },
       assertHidden: function($locator) {
-        zhain.ext.assert.isTrue($($locator.selector).is(':hidden'), '$("' + $locator.selector + '") is not hidden')
+        zhain.ext.assert.isTrue($($locator.selector).is(':hidden'), '$("' + $locator.selector + '") should be hidden')
       },
       assertDoesNotExist: function($locator) {
-        zhain.ext.assert.equal($($locator.selector).length, 0, '$("' + $locator.selector + '") exists')
+        zhain.ext.assert.equal($($locator.selector).length, 0, '$("' + $locator.selector + '") should not exist')
       },
       assertCount: function($locator, count) {
         zhain.ext.assert.equal($($locator.selector).length, count, '$("' + $locator.selector + '").length')
       },
       assertEmpty: function($locator) {
-        zhain.ext.assert.isTrue($($locator.selector).is(':empty'), '$("' + $locator.selector + '") is not empty')
+        zhain.ext.assert.isTrue($($locator.selector).is(':empty'), '$("' + $locator.selector + '") should be empty')
       },
       assertNotEmpty: function($locator) {
-        zhain.ext.assert.isFalse($($locator.selector).is(':empty'), '$("' + $locator.selector + '") is empty')
+        zhain.ext.assert.isFalse($($locator.selector).is(':empty'), '$("' + $locator.selector + '") should not be empty')
       },
       assertHasClass: function($locator, clazz) {
-        zhain.ext.assert.isTrue($($locator.selector).hasClass(clazz), '$("' + $locator.selector + '") doesn\'t have class "' + clazz + '"')
+        zhain.ext.assert.isTrue($($locator.selector).hasClass(clazz), '$("' + $locator.selector + '") should have class "' + clazz + '"')
       },
       assertNoClass: function($locator, clazz) {
         zhain.ext.assert.isFalse($($locator.selector).hasClass(clazz), '$("' + $locator.selector + '") shouldn\'t have class "' + clazz + '"')
       },
       assertChecked: function($locator) {
-        zhain.ext.assert.isTrue($($locator.selector).is(':checked'), '$("' + $locator.selector + '") is not checked')
+        zhain.ext.assert.isTrue($($locator.selector).is(':checked'), '$("' + $locator.selector + '") should be checked')
       },
       assertNotChecked: function($locator) {
-        zhain.ext.assert.isFalse($($locator.selector).is(':checked'), '$("' + $locator.selector + '") is checked')
+        zhain.ext.assert.isFalse($($locator.selector).is(':checked'), '$("' + $locator.selector + '") should not be checked')
       },
       logAjax: function() {
         $(document).ajaxSend(log).ajaxComplete(log)
