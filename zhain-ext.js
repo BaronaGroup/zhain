@@ -3,10 +3,12 @@ if (typeof define !== 'undefined') {
 } else {
   var chai = require('chai')
   var zhain = require('zhain')
-  zhainExt(zhain, chai)
+  var $ = require('jquery')
+  zhainExt(zhain, chai, $)
 }
 
-function zhainExt(zhain, chai) {
+function zhainExt(zhain, chai, $) {
+  $ = $ || window.$
   var Zhain = zhain.Zhain
   zhain.ext = {
     assert: chai.assert,
