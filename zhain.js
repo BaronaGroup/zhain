@@ -74,19 +74,15 @@ function initZhain() {
     function wrapSyncFn(fn) {
       return function(done) {
         var args = splitArgs(arguments)
-        try {
-          var result = fn.apply(this, args.args)
-          if (result !== undefined) {
-            if (result.then && result.fail) {
-              result.then(done).done()
-            } else {
-              args.done(null, result)
-            }
+        var result = fn.apply(this, args.args)
+        if (result !== undefined) {
+          if (result.then && result.fail) {
+            result.then(done).done()
           } else {
-            args.done(null)
+            args.done(null, result)
           }
-        } catch (e) {
-          args.done(e)
+        } else {
+          args.done(null)
         }
       }
     }
