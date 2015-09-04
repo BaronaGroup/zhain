@@ -11,6 +11,11 @@ function zhainExt(zhain, chai, $) {
   $ = $ || window.$
   var Zhain = zhain.Zhain
   zhain.ext = {
+    replaceJQuery: function(new$) {
+      var old$ = $
+      $ = new$
+      return old$
+    },
     assert: chai.assert,
     wait: {
       forAjax: function(callback) {
