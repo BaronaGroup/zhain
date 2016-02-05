@@ -159,7 +159,7 @@ function zhainExt(zhain, chai, $) {
     registerSync: function(name, fn) {
       Zhain.prototype[name] = function() {
         var args = Array.prototype.slice.call(arguments)
-        return this.do(function() { fn.apply(this, args) })
+        return this.do(function() { return fn.apply(this, args) })
       }
     },
     registerAsync: function(name, fn) {
