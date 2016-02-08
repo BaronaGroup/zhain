@@ -77,7 +77,10 @@ function initZhain() {
         var result = fn.apply(this, args.args)
         if (result !== undefined) {
           if (result.then) {
-            result.then(function(result) { args.done(null, result)}, function(err) { args.done(err) })
+            result.then(
+              function(result) { result === undefined ? args.done(null) : args.done(null, result)},
+              function(err) { args.done(err) }
+            )
           } else {
             args.done(null, result)
           }
