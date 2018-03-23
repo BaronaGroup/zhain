@@ -52,7 +52,7 @@ function zhainExt(zhain, chai, $) {
     },
     sync: {
       breakpoint: function() {
-        debugger
+        debugger // eslint-disable-line no-debugger
       },
       enterVal: function($selector, val) {
         $($selector.selector || $selector).val(val)
@@ -118,8 +118,8 @@ function zhainExt(zhain, chai, $) {
         $(document).ajaxSend(log).ajaxComplete(log)
 
         function log(e, jqXHR, opts) {
-          var header = (e.type == 'ajaxComplete') ? 'DONE ' : ''
-          console.log(header + opts.type + ' ' + opts.url)
+          var header = (e.type === 'ajaxComplete') ? 'DONE ' : ''
+          console.log(header + opts.type + ' ' + opts.url) // eslint-disable-line no-console
         }
       }
     },
@@ -165,7 +165,7 @@ function zhainExt(zhain, chai, $) {
     registerAsync: function(name, fn) {
       Zhain.prototype[name] = function() {
         var args = Array.prototype.slice.call(arguments)
-        return this.do(function(invokedArgs) {
+        return this.do(function(invokedArgs) { // eslint-disable-line no-unused-vars
           var done = arguments[arguments.length - 1]
           fn.apply(this, args.concat([done]))
         })

@@ -111,7 +111,7 @@ describe('zhain-test', function() {
         .end()
 
       var jj = 0
-      var end = function(err, res) {
+      var end = function() {
         if (++jj == 10) done()
       }
       z1(end); z1(end); z1(end); z1(end); z1(end);
@@ -204,7 +204,7 @@ describe('zhain-test', function() {
         z().do(pushN(2)).do(function(done2) {
           z().do(pushN(3)).run(done2)
         }).run(done1)
-      }).run(function() {
+      }).run(function(done) {
         assert.deepEqual(calls, [1,2,3])
         done()
       })
@@ -215,7 +215,7 @@ describe('zhain-test', function() {
         .do(pushN(1))
         .do(z().do(pushN(2)).end())
         .do(z().do(pushN(3)).end())
-        .run(function() {
+        .run(function(done) {
           assert.deepEqual(calls, [1,2,3])
           done()
         })

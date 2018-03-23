@@ -17,7 +17,6 @@ function initZhain() {
     this.fn = fn
   }
 
-  ;
   (function() {
     Zhain.prototype.do = function(fn) {
       return new Zhain(this, fn)
@@ -55,11 +54,11 @@ function initZhain() {
     }
 
     Zhain.prototype.log = function(string) {
-      return this.sync(function() { console.log(string || arguments) })
+      return this.sync(function() { console.log(string || arguments) }) // eslint-disable-line no-console
     }
 
     Zhain.prototype.sleep = function(ms) {
-      return this.do(function(done) {
+      return this.do(function(done) { // eslint-disable-line no-unused-vars
         var args = splitArgs(arguments)
         setTimeout(function() { args.done.apply(this, [null].concat(args.args)) }, ms)
       })
@@ -72,7 +71,7 @@ function initZhain() {
     zhain.prototype = Zhain.prototype
 
     function wrapSyncFn(fn) {
-      return function(done) {
+      return function(done) { // eslint-disable-line no-unused-vars
         var args = splitArgs(arguments)
         var result = fn.apply(this, args.args)
         if (result !== undefined) {

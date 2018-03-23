@@ -148,5 +148,5 @@ describe('zhain-ext-test', notInNode(function() {
 }))
 
 function notInNode(fn) {
-  return (typeof module !== 'undefined') ? function() { console.log('>> Not running: zhain-ext-test. Only makes sense in browsers') } : fn
+  return (typeof module !== 'undefined') ? function() { console.log('>> Not running: zhain-ext-test. Only makes sense in browsers') } : fn // eslint-disable-line no-console
 }
