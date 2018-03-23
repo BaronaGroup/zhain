@@ -24,20 +24,24 @@ function zhainExt(zhain, chai, $) {
       forThrottledAjax: function(callback) {
         $(document).one('ajaxSend', function() { zhain.ext.wait.forAjax(callback) })
       },
-      forTransitionEnd: function($selector, callback) {
-        $($selector.selector || $selector).one('transitionEnd webkitTransitionEnd oTransitionEnd msTransitionEnd', function() { callback() })
+      forTransitionEnd: function(selector, callback) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).one('transitionEnd webkitTransitionEnd oTransitionEnd msTransitionEnd', function() { callback() })
       },
       forAnimations: function(callback) {
         zhain.ext.wait.until(function() { return $(":animated").length === 0 }, callback)
       },
-      untilVisible: function($selector, callback) {
-        zhain.ext.wait.until(function() { return $($selector.selector || $selector).is(':visible') }, callback)
+      untilVisible: function(selector, callback) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.wait.until(function() { return $(selector).is(':visible') }, callback)
       },
-      untilHidden: function($selector, callback) {
-        zhain.ext.wait.until(function() { return !$($selector.selector || $selector).is(':visible') }, callback)
+      untilHidden: function(selector, callback) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.wait.until(function() { return !$(selector).is(':visible') }, callback)
       },
-      untilExists: function($selector, callback) {
-        zhain.ext.wait.until(function() { return $($selector.selector || $selector).length > 0 }, callback)
+      untilExists: function(selector, callback) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.wait.until(function() { return $(selector).length > 0 }, callback)
       },
       until: function(conditionFn, callback) {
         var that = this
@@ -54,65 +58,85 @@ function zhainExt(zhain, chai, $) {
       breakpoint: function() {
         debugger // eslint-disable-line no-debugger
       },
-      enterVal: function($selector, val) {
-        $($selector.selector || $selector).val(val)
+      enterVal: function(selector, val) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).val(val)
       },
-      enterValAndKeyupBlur: function($selector, val) {
-        $($selector.selector || $selector).val(val).trigger('keyup').trigger('blur')
+      enterValAndKeyupBlur: function(selector, val) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).val(val).trigger('keyup').trigger('blur')
       },
-      enterValAndKeyupChange: function($selector, val) {
-        $($selector.selector || $selector).val(val).trigger('keyup').trigger('change')
+      enterValAndKeyupChange: function(selector, val) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).val(val).trigger('keyup').trigger('change')
       },
-      click: function($selector) {
-        $($selector.selector || $selector).click()
+      click: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).click()
       },
-      assertVal: function($selector, val) {
-        zhain.ext.assert.equal($($selector.selector || $selector).val(), val)
+      assertVal: function(selector, val) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.equal($(selector).val(), val)
       },
-      assertDisabled: function($selector) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).is(':disabled'), '$("' + $selector.selector + '") should be disabled')
+      assertDisabled: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).is(':disabled'), '$("' + selector + '") should be disabled')
       },
-      assertEnabled: function($selector) {
-        zhain.ext.assert.isFalse($($selector.selector || $selector).is(':disabled'), '$("' + $selector.selector + '") should be enabled')
+      assertEnabled: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isFalse($(selector).is(':disabled'), '$("' + selector + '") should be enabled')
       },
-      assertText: function($selector, txt) {
-        zhain.ext.assert.equal($($selector.selector || $selector).text(), txt)
+      assertText: function(selector, txt) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.equal($(selector).text(), txt)
       },
-      assertHtml: function($selector, html) {
-        zhain.ext.assert.equal($($selector.selector || $selector).html(), html)
+      assertHtml: function(selector, html) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.equal($(selector).html(), html)
       },
-      assertVisible: function($selector) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).is(':visible'), '$("' + $selector.selector + '") should be visible')
+      assertVisible: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).is(':visible'), '$("' + selector + '") should be visible')
       },
-      assertNotVisible: function($selector) {
-        zhain.ext.assert.isFalse($($selector.selector || $selector).is(':visible'), '$("' + $selector.selector + '") should not be visible')
+      assertNotVisible: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isFalse($(selector).is(':visible'), '$("' + selector + '") should not be visible')
       },
-      assertHidden: function($selector) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).is(':hidden'), '$("' + $selector.selector + '") should be hidden')
+      assertHidden: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).is(':hidden'), '$("' + selector + '") should be hidden')
       },
-      assertDoesNotExist: function($selector) {
-        zhain.ext.assert.equal($($selector.selector || $selector).length, 0, '$("' + $selector.selector + '") should not exist')
+      assertDoesNotExist: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.equal($(selector).length, 0, '$("' + selector + '") should not exist')
       },
-      assertCount: function($selector, count) {
-        zhain.ext.assert.equal($($selector.selector || $selector).length, count, '$("' + $selector.selector + '").length')
+      assertCount: function(selector, count) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.equal($(selector).length, count, '$("' + selector + '").length')
       },
-      assertEmpty: function($selector) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).is(':empty'), '$("' + $selector.selector + '") should be empty')
+      assertEmpty: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).is(':empty'), '$("' + selector + '") should be empty')
       },
-      assertNotEmpty: function($selector) {
-        zhain.ext.assert.isFalse($($selector.selector || $selector).is(':empty'), '$("' + $selector.selector + '") should not be empty')
+      assertNotEmpty: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isFalse($(selector).is(':empty'), '$("' + selector + '") should not be empty')
       },
-      assertHasClass: function($selector, clazz) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).hasClass(clazz), '$("' + $selector.selector + '") should have class "' + clazz + '"')
+      assertHasClass: function(selector, clazz) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).hasClass(clazz), '$("' + selector + '") should have class "' + clazz + '"')
       },
-      assertNoClass: function($selector, clazz) {
-        zhain.ext.assert.isFalse($($selector.selector || $selector).hasClass(clazz), '$("' + $selector.selector + '") shouldn\'t have class "' + clazz + '"')
+      assertNoClass: function(selector, clazz) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isFalse($(selector).hasClass(clazz), '$("' + selector + '") shouldn\'t have class "' + clazz + '"')
       },
-      assertChecked: function($selector) {
-        zhain.ext.assert.isTrue($($selector.selector || $selector).is(':checked'), '$("' + $selector.selector + '") should be checked')
+      assertChecked: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isTrue($(selector).is(':checked'), '$("' + selector + '") should be checked')
       },
-      assertNotChecked: function($selector) {
-        zhain.ext.assert.isFalse($($selector.selector || $selector).is(':checked'), '$("' + $selector.selector + '") should not be checked')
+      assertNotChecked: function(selector) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        zhain.ext.assert.isFalse($(selector).is(':checked'), '$("' + selector + '") should not be checked')
       },
       logAjax: function() {
         $(document).ajaxSend(log).ajaxComplete(log)
@@ -128,16 +152,19 @@ function zhainExt(zhain, chai, $) {
         zhain.ext.sync.enterValAndKeyupBlur($input, val, done)
         zhain.ext.wait.forThrottledAjax(done)
       },
-      ajaxClick: function($selector, done) {
-        $($selector.selector).click()
+      ajaxClick: function(selector, done) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).click()
         zhain.ext.wait.forAjax(done)
       },
-      throttledAjaxClick: function($selector, done) {
-        $($selector.selector).click()
+      throttledAjaxClick: function(selector, done) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).click()
         zhain.ext.wait.forThrottledAjax(done)
       },
-      ajaxTrigger: function($selector, event, done) {
-        $($selector.selector).trigger(event)
+      ajaxTrigger: function(selector, event, done) {
+        if (typeof selector !== 'string') throw new Error('Zhain now requires selectors as strings')
+        $(selector).trigger(event)
         zhain.ext.wait.forAjax(done)
       }
     },
