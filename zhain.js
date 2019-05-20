@@ -1,8 +1,4 @@
-if (typeof define !== 'undefined') {
-  define(initZhain)
-} else {
-  initZhain()
-}
+initZhain()
 
 function initZhain() {
 

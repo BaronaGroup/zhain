@@ -1,11 +1,7 @@
-if (typeof define !== 'undefined') {
-  define(['zhain', 'chai'], zhainExt)
-} else {
-  var chai = require('chai')
-  var zhain = require('zhain')
-  var $ = require('jquery')
-  zhainExt(zhain, chai, $)
-}
+var chai = require('chai')
+var zhain = require('zhain')
+var $ = require('jquery')
+zhainExt(zhain, chai, $)
 
 function zhainExt(zhain, chai, $) {
   $ = $ || window.$
